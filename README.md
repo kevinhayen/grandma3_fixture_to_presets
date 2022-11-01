@@ -81,11 +81,26 @@ In this case, most people create their macro's to create their color presets usi
 Well, this is now built into this plugin as well.
 
 In the attributes list, there is no "Color" attribute, so this name is nog visible in the list of attributes within the plugin, when CMY or RGB channels are found in that plugin.. here shown as the middle attribute button:
+
 ![image](https://user-images.githubusercontent.com/95590073/199290248-614fa4dc-7825-4ce2-80d5-bf57f7cee493.png)
 
 When clicking "Color", you get an overview of colors:
 You can create each color preset seperatly by clicking the color name, or you can create all colors at once by clicking "Create All Colors".
+
 ![image](https://user-images.githubusercontent.com/95590073/199290491-5bc91606-deb0-44f9-8e3e-566e59dd3d21.png)
 
 These values can be found in the LUA plugin file on top, so you can edit your own colors:
+
 ![image](https://user-images.githubusercontent.com/95590073/199290814-c22a91d5-14d2-46c0-bc0f-bbd5578cf6f4.png)
+
+---
+
+Next to CMY or RGB, GrandMA3 has other color attributes, defined for specific colors, starting in this overview from line 114 until line 123:
+
+![image](https://user-images.githubusercontent.com/95590073/199293185-7d03859b-3200-4eec-9677-c36c1da40d2a.png)
+
+When deep diving the LUA code, you can find overrules for colors "Amber", "Lime", "Purple", "Pink", "Open", "Warm White", "Cold White" and "UV". Some fixtures have one or more of these colors as a seperate channel. When these channels are found in the selected fixture type, the RGB or CMY values will be set to zero for that color, while for that seperate color channel, the value will be set to full.
+
+example:
+
+https://user-images.githubusercontent.com/95590073/199295136-1848cdb5-6f92-4eb6-8ba8-d032f151a8a6.mov
