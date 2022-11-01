@@ -1,9 +1,11 @@
 # fixture_to_presets
 grandma3 lua plugin to store presets, based on fixture files
 
-works on v1.8.1.0
+works on **v1.8.1.0**
 
 IMPORTANT ! This plugin can fail on fixtures types, having "User" defined as Source in the "fixture types" overview
+
+## Example
 
 https://user-images.githubusercontent.com/95590073/199271857-11ac8645-fafa-498f-9ad6-1acc2f8ecdf5.mp4
 
@@ -37,11 +39,17 @@ When clicking an attribute, the right button in the upper section shows the clic
 
 ![image](https://user-images.githubusercontent.com/95590073/199278078-c7d06bde-3377-4a9b-9341-906d91fb2ec6.png)
 
-In the middle section, next to "Store Preset by clicking", we have 3 buttons to change where the next preset will be stored, and a "merge" checkbox
-- the first 3 buttons are used to navigate to empty presets, where the middle button can be pressed to set this number manually by an inputbox.
-- "Merge" checkbox will overrule the indicated preset, and directly show a popup to input your desired preset where the next pressed values needs to be merged
+---
 
-The lower section shows all possible values defined in the fixture file, linked to the selected attribute. First line shows the text, second line shows which value will be stored.
+next to "Store Preset by clicking", we have ways to indicate in which preset the value will be stored
+
+![image](https://user-images.githubusercontent.com/95590073/199311746-71ba0f02-e071-4fb2-a040-af279d8ff4a1.png)
+
+The 3 buttons are used to navigate over empty presets. 
+
+By pressing the middle button, you can enter a number manually. The first empty found preset number, started from the manually entered number, will be selected.
+
+The **Merge** checkbox will show an inputbox to manually enter a preset number, this overrules the buttons on the left of it
 
 ---
 
