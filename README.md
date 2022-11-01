@@ -88,7 +88,7 @@ Fixtures having at least CMY or RGB values, will not have all combinations of co
 In this case, most people create their macro's to create their color presets using the 3 parameters (C, M, Y) or (R, G, B).
 Well, this is now built into this plugin as well.
 
-In the attributes list, there is no "Color" attribute, so this name is nog visible in the list of attributes within the plugin, when CMY or RGB channels are found in that plugin.. here shown as the middle attribute button:
+In the attributes list, there is no "Color" attribute, so this name is not visible in the list of attributes within the plugin, when CMY or RGB channels are found in that plugin.. here shown as the middle attribute button:
 
 ![image](https://user-images.githubusercontent.com/95590073/199290248-614fa4dc-7825-4ce2-80d5-bf57f7cee493.png)
 
