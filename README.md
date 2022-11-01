@@ -1,9 +1,9 @@
 # fixture_to_presets
 grandma3 lua plugin to store presets, based on fixture files
 
-Last tested on v1.8.1.0
+works on v1.8.1.0
 
-IMPORTANT ! .. This plugin can fail on fixtures types, having "User" defined as Source in the "fixture types" overview
+IMPORTANT ! This plugin can fail on fixtures types, having "User" defined as Source in the "fixture types" overview
 
 https://user-images.githubusercontent.com/95590073/199271857-11ac8645-fafa-498f-9ad6-1acc2f8ecdf5.mp4
 
