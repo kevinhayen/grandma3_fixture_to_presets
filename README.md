@@ -4,8 +4,11 @@ grandma3 lua plugin to store presets, based on fixture files
 works on **v1.8.1.0**
 
 ```
-IMPORTANT ! This plugin can fail on fixtures types, having "User" defined as Source in the "fixture types" overview
+Little important info:
+- This plugin can fail on fixtures types, having "User" defined as Source in the "fixture types" overview
+- A scrollbar will be added later as a feature, for when their is more to show than what your screen can handle
 ```
+
 ## Example
 
 https://user-images.githubusercontent.com/95590073/199271857-11ac8645-fafa-498f-9ad6-1acc2f8ecdf5.mp4
