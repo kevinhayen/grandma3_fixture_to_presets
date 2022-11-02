@@ -1,5 +1,5 @@
 # fixture_to_presets
-grandma3 lua plugin to store presets, based on fixture files
+grandma3 lua plugin to store presets, based on info provided by fixture files
 
 works on **v1.8.1.0**
 
