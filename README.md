@@ -3,8 +3,9 @@ grandma3 lua plugin to store presets, based on fixture files
 
 works on **v1.8.1.0**
 
+```
 IMPORTANT ! This plugin can fail on fixtures types, having "User" defined as Source in the "fixture types" overview
-
+```
 ## Example
 
 https://user-images.githubusercontent.com/95590073/199271857-11ac8645-fafa-498f-9ad6-1acc2f8ecdf5.mp4
@@ -14,7 +15,7 @@ https://user-images.githubusercontent.com/95590073/199271857-11ac8645-fafa-498f-
 1. Copy the lua code from https://github.com/kevinhayen/fixture_to_presets/blob/main/fixture_to_presets.lua
 2. In the plugin pool, create a new plugin
 3. label this plugin as "fixture_to_presets", or another name without a space
-4. Click "Insert new ComponentLua"
+4. Open this plugin by editing, and click "Insert new ComponentLua"
 5. Click "Edit", which opens the LUA editor
 6. Paste your copied LUA code in this screen, and press "Save" on the top right
 7. execute "ReloadPlugins" in commandline
@@ -23,11 +24,11 @@ https://user-images.githubusercontent.com/95590073/199271857-11ac8645-fafa-498f-
 
 ### Navigating
 
-When running the plugin, the first screen shows all fixture types of fixtures, who are patched in this showfile. Subfixtures are shown in red.
+When running the plugin, the first screen shows all fixture types of patched fixtures. Subfixtures are shown in red.
 
 ![image](https://user-images.githubusercontent.com/95590073/199273784-42c2c9a8-90d7-4332-9478-f53d20b1c31d.png)
 
-When clicking on one of those fixture types, a list of attributes are shown.
+When clicking one of those fixture types, a list of attributes are shown.
 - The upper section of this plugin now shows 2 buttons, the left shows the clicked fixture (and mode)
 - The other part of this plugin now lists all linked attributes. Each attribute button shows first the attribute name, having the featuregroup below it
 
@@ -88,7 +89,7 @@ Fixtures having at least CMY or RGB values, will not have all combinations of co
 In this case, most people create their macro's to create their color presets using the 3 parameters (C, M, Y) or (R, G, B).
 Well, this is now built into this plugin as well.
 
-In the attributes list, there is no "Color" attribute, so this name is not visible in the list of attributes within the plugin, when CMY or RGB channels are found in that plugin.. here shown as the middle attribute button:
+In the official MA3 attributes list, there is no "Color" attribute, so this name is used in this plugin when CMY or RGB channels are found in the selected fixture group.. which is shown in this example as the middle attribute button:
 
 ![image](https://user-images.githubusercontent.com/95590073/199290248-614fa4dc-7825-4ce2-80d5-bf57f7cee493.png)
 
@@ -112,3 +113,4 @@ When deep diving the LUA code, you can find overrules for colors "Amber", "Lime"
 example:
 
 https://user-images.githubusercontent.com/95590073/199295136-1848cdb5-6f92-4eb6-8ba8-d032f151a8a6.mov
+
