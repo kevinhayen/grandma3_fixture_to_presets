@@ -1,5 +1,7 @@
 # fixture_to_presets
-grandma3 lua plugin to store presets, based on info provided by fixture files
+Grandma3 lua plugin to store presets, based on info provided by fixture files
+
+All object manipulations are done using commands, visible in the "Command Line History" screen.
 
 works on **v1.8.8.2**
 
@@ -8,6 +10,12 @@ Little important info:
 - This plugin can fail on fixtures types, having "User" defined as Source in the "fixture types" overview
 - A scrollbar will be added later as a feature, for when their is more to show than what your screen can handle
 ```
+
+## Donations
+
+Just checking how motivated you can make us, to post more of our plugins !
+
+[![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/donate/?hosted_button_id=DYYUK9H8NLV28)
 
 ## Example
 
