@@ -5,11 +5,10 @@ All object manipulations are done using commands, visible in the "Command Line H
 
 works on **v1.8.8.2**
 
-```
-Little important info:
-- This plugin can fail on fixtures types, having "User" defined as Source in the "fixture types" overview
+## Little important info:
+- This plugin can fail on fixtures types having "User" defined as Source in the "fixture types" overview, when these fixtures are not created according the ma3 standards
 - A scrollbar will be added later as a feature, for when their is more to show than what your screen can handle
-```
+
 
 ## Donations
 
