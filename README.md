@@ -120,5 +120,5 @@ example:
 https://user-images.githubusercontent.com/95590073/199295136-1848cdb5-6f92-4eb6-8ba8-d032f151a8a6.mov
 
 ## Little important info:
-- This plugin can fail on fixtures types having "User" defined as Source in the "fixture types" overview, when these fixtures are not created according the ma3 standards
+- It is possible to no see all attributes when clicking a fixture group, this happens mostly when fixtures types have "User" defined as Source in the "fixture types" overview, when these fixtures are not created according the MA3 fixture standards. More info: [Build Fixture Types](https://help2.malighting.com/Page/grandMA3/ft_build/en)
 - A scrollbar will be added later as a feature, for when their is more to show than what your screen can handle
