@@ -11,6 +11,10 @@ Just checking how motivated you can make us, to post more of our plugins !
 
 [![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/donate/?hosted_button_id=DYYUK9H8NLV28)
 
+## Little important info:
+- It is possible to no see a patched fixture, its attributes, or its values. This happens when these fixtures are not created according the MA3 fixture standards, mostly accurs when fixturetypes have "User" defined as Source (instead of "GrandMA2" or "GrandMA3") in the "fixture types" overview. More info: [Build Fixture Types](https://help2.malighting.com/Page/grandMA3/ft_build/en)
+- A scrollbar will be added later as a feature, for when their is more to show than what your screen can handle
+
 ## Example
 
 https://user-images.githubusercontent.com/95590073/199271857-11ac8645-fafa-498f-9ad6-1acc2f8ecdf5.mp4
@@ -119,6 +123,3 @@ example:
 
 https://user-images.githubusercontent.com/95590073/199295136-1848cdb5-6f92-4eb6-8ba8-d032f151a8a6.mov
 
-## Little important info:
-- It is possible to no see all attributes when clicking a fixture group, this happens mostly when fixtures types have "User" defined as Source in the "fixture types" overview, when these fixtures are not created according the MA3 fixture standards. More info: [Build Fixture Types](https://help2.malighting.com/Page/grandMA3/ft_build/en)
-- A scrollbar will be added later as a feature, for when their is more to show than what your screen can handle
