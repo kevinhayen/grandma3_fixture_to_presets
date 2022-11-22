@@ -45,7 +45,9 @@ When clicking one of those fixture types, a list of attributes are shown.
 
 ---------
 
-When clicking an attribute, the right button in the upper section shows the clicked attribute. The lower part shows possible values to be stored as a preset, indicating the name above and the value below
+When clicking an attribute, the right button in the upper section shows the clicked attribute, which in this example is "Dimmer".
+
+The lower part shows possible values to be stored as a preset, indicating the name above and the value below
 
 ![image](https://user-images.githubusercontent.com/95590073/199278078-c7d06bde-3377-4a9b-9341-906d91fb2ec6.png)
 
@@ -59,7 +61,7 @@ The 3 buttons are used to navigate over empty presets.
 
 By pressing the middle button, you can enter a number manually. The first empty found preset number, started from the manually entered number, will be selected.
 
-The **Merge** checkbox will show an inputbox to manually enter a preset number, this overrules the buttons on the left of it
+The **Merge** checkbox will show an inputbox to manually enter a preset number after pressing a value you want to be stored. This overrules the buttons on the left of it
 
 ---
 
