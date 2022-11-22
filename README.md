@@ -45,7 +45,7 @@ When clicking one of those fixture types, a list of attributes are shown.
 
 ---------
 
-When clicking an attribute, the right button in the upper section shows the clicked attribute, while the lower part of this plugin now shows possible values to be stored as a preset.
+When clicking an attribute, the right button in the upper section shows the clicked attribute. The lower part shows possible values to be stored as a preset, indicating the name above and the value below
 
 ![image](https://user-images.githubusercontent.com/95590073/199278078-c7d06bde-3377-4a9b-9341-906d91fb2ec6.png)
 
