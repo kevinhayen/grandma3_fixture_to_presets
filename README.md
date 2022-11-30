@@ -8,9 +8,13 @@ All object manipulations are done using commands, visible in the "Command Line H
 
 works on **v1.8.8.2**
 
+## Features
+
+- A scrollbar, for when their is more to show than what your screen can handle
+- A "preview" button will be added to see the output of selected values (before storing)
+
 ## Little important info:
-- It is possible to not see a patched fixture, its attributes, or its values. This happens when these fixtures are not created according the MA3 fixture standards. Mostly accurs when fixturetypes have "User" defined as Source (instead of "GrandMA2" or "GrandMA3") in the "fixture types" overview. More info: [Build Fixture Types](https://help2.malighting.com/Page/grandMA3/ft_build/en)
-- A scrollbar will be added later as a feature, for when their is more to show than what your screen can handle
+It is possible to not see a patched fixture, its attributes, or its values. This happens when these fixtures are not created according the MA3 fixture standards. Mostly accurs when fixturetypes have "User" defined as Source (instead of "GrandMA2" or "GrandMA3") in the "fixture types" overview. More info: [Build Fixture Types](https://help2.malighting.com/Page/grandMA3/ft_build/en)
 
 ## Donations
 
