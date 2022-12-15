@@ -8,7 +8,7 @@ All object manipulations are done using commands, visible in the "Command Line H
 
 works on **v1.8.8.2**
 
-## Features
+## Features to be implemented
 
 - A scrollbar, for when their is more to show than what your screen can handle
 - A "preview" button will be added to see the output of selected values (before storing)
