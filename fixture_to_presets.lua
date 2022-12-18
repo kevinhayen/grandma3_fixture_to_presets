@@ -515,6 +515,26 @@ local function fixture_to_presets(displayHandle)
 			};
 			subOptions.Text = "Store Preset by clicking";
 
+			chkPreview = subGrid:Append("CheckBox")
+			chkPreview.Anchors = {
+				left = 0,
+				right = 1,
+				top = 0,
+				bottom = 0
+			}    
+			chkPreview.Margin = {
+					left = 8,
+					right = 8,
+					top = 15,
+					bottom = 15    
+				}
+				chkPreview.Text = "Preview"
+				chkPreview.TextalignmentH = "Left";
+				chkPreview.State = GetVar(UserVars(),"ftpClickedPreview");
+				chkPreview.PluginComponent = myHandle
+				chkPreview.Clicked = "chkPreviewClicked"
+				chkPreview.HasHover = "Yes";
+
 			chkMerge = subGrid:Append("CheckBox")
 			chkMerge.Anchors = {
 				left = 18,
@@ -906,11 +926,13 @@ local function fixture_to_presets(displayHandle)
 
 			end
 
-			Cmd('Store Preset "' .. string.sub(GetVar(UserVars(),"ftpPresetType"), 2) .. '".' .. GetVar(UserVars(), 'ftpStorePreset') .. ' /m');
-			if GetVar(UserVars(), 'ftpStoreMode') ~= 'merge' then
-				Cmd('Label Preset "' .. string.sub(GetVar(UserVars(),"ftpPresetType"), 2) .. '".' .. GetVar(UserVars(), 'ftpStorePreset') .. ' "' .. GetVar(UserVars(),"ftpChannelValueName") .. '"')
+			if GetVar(UserVars(),"ftpClickedPreview") ~= 1 then
+				Cmd('Store Preset "' .. string.sub(GetVar(UserVars(),"ftpPresetType"), 2) .. '".' .. GetVar(UserVars(), 'ftpStorePreset') .. ' /m');
+				if GetVar(UserVars(), 'ftpStoreMode') ~= 'merge' then
+					Cmd('Label Preset "' .. string.sub(GetVar(UserVars(),"ftpPresetType"), 2) .. '".' .. GetVar(UserVars(), 'ftpStorePreset') .. ' "' .. GetVar(UserVars(),"ftpChannelValueName") .. '"')
+				end
+				Cmd('ClearAll');
 			end
-			Cmd('ClearAll');
 			
 			fixture_to_presets_find_first_empty_preset('>')
 		end
@@ -927,6 +949,14 @@ local function fixture_to_presets(displayHandle)
 		Cmd("Call Plugin " .. pluginName);
 	end
 
+	signalTable.chkPreviewClicked = function(caller)
+		if chkPreview.State == 1 then
+			chkPreview.State = 0;
+		else
+			chkPreview.State = 1;
+		end
+		SetVar(UserVars(),"ftpClickedPreview", chkPreview.State);
+	end
 
 	signalTable.chkMergeClicked = function(caller)
 		if chkMerge.State == 1 then
@@ -956,13 +986,15 @@ function fixture_to_presets_execute()
 		fixture_to_presets_select_fixtures(GetVar(UserVars(), 'ftpClickedFixture'), GetVar(UserVars(), 'ftpClickedFixtureMode'));
 
 		Cmd('Attribute "' .. GetVar(UserVars(),"ftpClickedAttribute") .. '" At Absolute Decimal24 ' .. tostring(tonumber(GetVar(UserVars(),"ftpClickedValue")) * 65793) );
-		if GetVar(UserVars(), 'ftpStoreMode') == 'merge' then
-			Cmd('Store Preset "' .. string.sub(GetVar(UserVars(),"ftpPresetType"), 2) .. '".' .. GetVar(UserVars(), 'ftpStorePreset') .. ' /m');
-		else
-			Cmd('Store Preset "' .. string.sub(GetVar(UserVars(),"ftpPresetType"), 2) .. '".' .. GetVar(UserVars(), 'ftpStorePreset'));
-			Cmd('Label Preset "' .. string.sub(GetVar(UserVars(),"ftpPresetType"), 2) .. '".' .. GetVar(UserVars(), 'ftpStorePreset') .. ' "' .. GetVar(UserVars(),"ftpChannelValueName") .. '"')
+		if GetVar(UserVars(),"ftpClickedPreview") ~= 1 then
+			if GetVar(UserVars(), 'ftpStoreMode') == 'merge' then
+				Cmd('Store Preset "' .. string.sub(GetVar(UserVars(),"ftpPresetType"), 2) .. '".' .. GetVar(UserVars(), 'ftpStorePreset') .. ' /m');
+			else
+				Cmd('Store Preset "' .. string.sub(GetVar(UserVars(),"ftpPresetType"), 2) .. '".' .. GetVar(UserVars(), 'ftpStorePreset'));
+				Cmd('Label Preset "' .. string.sub(GetVar(UserVars(),"ftpPresetType"), 2) .. '".' .. GetVar(UserVars(), 'ftpStorePreset') .. ' "' .. GetVar(UserVars(),"ftpChannelValueName") .. '"')
+			end
+			Cmd('ClearAll');
 		end
-		Cmd('ClearAll');
 
 		fixture_to_presets_find_first_empty_preset(">")
 
@@ -1009,61 +1041,64 @@ end
 
 function fixture_to_presets_store_info()
 
-	SetVar(UserVars(), 'ftpStorePreset', '0')
-	DelVar(UserVars(), 'ftpStoreMode')
+	if GetVar(UserVars(),"ftpClickedPreview") ~= 1 then
+		
+		SetVar(UserVars(), 'ftpStorePreset', '0')
+		DelVar(UserVars(), 'ftpStoreMode')
 
-	if GetVar(UserVars(),"ftpClickedMerge") == 1 then
+		if GetVar(UserVars(),"ftpClickedMerge") == 1 then
 
-		storePreset = TextInput(': "' .. string.sub(GetVar(UserVars(),"ftpPresetType"), 2) .. '" preset number to merge values');
-		if storePreset == nil then
-			storePreset = 0;
-		end
-		SetVar(UserVars(), 'ftpStoreMode', 'merge');
-		SetVar(UserVars(), 'ftpStorePreset', storePreset);
+			storePreset = TextInput(': "' .. string.sub(GetVar(UserVars(),"ftpPresetType"), 2) .. '" preset number to merge values');
+			if storePreset == nil then
+				storePreset = 0;
+			end
+			SetVar(UserVars(), 'ftpStoreMode', 'merge');
+			SetVar(UserVars(), 'ftpStorePreset', storePreset);
 
-	else
+		else
 
-		--check if a preset exists, having the same name
-		local presetTypes = ShowData().DataPools.Default.PresetPools:Children();
-		--loop preset types (gobo, color, beam,..)
-		for presetType in ipairs(presetTypes) do
-			if presetTypes[presetType].name == string.sub(GetVar(UserVars(),"ftpPresetType"), 2) then
-				presets = presetTypes[presetType]:Children();
-				for preset in ipairs(presets) do
-					if presets[preset].name == GetVar(UserVars(),"ftpChannelValueName") then
-						if GetVar(UserVars(),"ftpForceMerge") == false then
-						    local options = {
-						        title="Fixture to Preset",   --string:
-						        message='A preset "' .. GetVar(UserVars(),"ftpChannelValueName") .. '" already exists in the ' .. string.sub(GetVar(UserVars(),"ftpPresetType"), 2) .. ' presets' ,  --string
-						        display= nil,               --int | handle?
-						        commands={
-						        	{value=tonumber(presets[preset].no), name="Merge Values"},
-						            {value=0, name="Create new preset"}
-						        }
-						    }
-							local r = MessageBox(options);
-							local result = tonumber(r['result']);
-							if result > 0 then
+			--check if a preset exists, having the same name
+			local presetTypes = ShowData().DataPools.Default.PresetPools:Children();
+			--loop preset types (gobo, color, beam,..)
+			for presetType in ipairs(presetTypes) do
+				if presetTypes[presetType].name == string.sub(GetVar(UserVars(),"ftpPresetType"), 2) then
+					presets = presetTypes[presetType]:Children();
+					for preset in ipairs(presets) do
+						if presets[preset].name == GetVar(UserVars(),"ftpChannelValueName") then
+							if GetVar(UserVars(),"ftpForceMerge") == false then
+								local options = {
+									title="Fixture to Preset",   --string:
+									message='A preset "' .. GetVar(UserVars(),"ftpChannelValueName") .. '" already exists in the ' .. string.sub(GetVar(UserVars(),"ftpPresetType"), 2) .. ' presets' ,  --string
+									display= nil,               --int | handle?
+									commands={
+										{value=tonumber(presets[preset].no), name="Merge Values"},
+										{value=0, name="Create new preset"}
+									}
+								}
+								local r = MessageBox(options);
+								local result = tonumber(r['result']);
+								if result > 0 then
+									SetVar(UserVars(), 'ftpStoreMode', 'merge');
+									SetVar(UserVars(), 'ftpStorePreset', result);
+								end
+								if result == -1 then
+									SetVar(UserVars(), 'ftpStorePreset', '-1');
+								end
+							else
 								SetVar(UserVars(), 'ftpStoreMode', 'merge');
-								SetVar(UserVars(), 'ftpStorePreset', result);
+								SetVar(UserVars(), 'ftpStorePreset', tonumber(presets[preset].no));
 							end
-							if result == -1 then
-								SetVar(UserVars(), 'ftpStorePreset', '-1');
-							end
-						else
-							SetVar(UserVars(), 'ftpStoreMode', 'merge');
-							SetVar(UserVars(), 'ftpStorePreset', tonumber(presets[preset].no));
 						end
 					end
 				end
 			end
-		end
 
-		--find first empty preset
-		if GetVar(UserVars(), 'ftpStorePreset') == '0' then
-			SetVar(UserVars(), 'ftpStorePreset', GetVar(UserVars(), 'ftpPresetNumber' .. string.sub(GetVar(UserVars(),"ftpPresetType"), 2)))
-		end
+			--find first empty preset
+			if GetVar(UserVars(), 'ftpStorePreset') == '0' then
+				SetVar(UserVars(), 'ftpStorePreset', GetVar(UserVars(), 'ftpPresetNumber' .. string.sub(GetVar(UserVars(),"ftpPresetType"), 2)))
+			end
 
+		end
 	end
 end
 
