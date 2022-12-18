@@ -8,15 +8,15 @@ All object manipulations are done using commands, visible in the "Command Line H
 
 works on **v1.8.8.2**
 
-## Features to be implemented
-
-- A scrollbar, for when their is more to show than what your screen can handle
-- Auto-matching between fixture info, and already existing presets
-
 ## New implemented features
 18-Dec-2022
 
 A "preview" checkbox, which if enabled will only put values in programmer, but not store them. In this case you can see the output of selected values before storing them
+
+## Features to be implemented
+
+- A scrollbar, for when their is more to show than what your screen can handle
+- Auto-matching between fixture info, and already existing presets
 
 ## Little important info:
 It is possible to not see a patched fixture, its attributes, or its values. This happens when these fixtures are not created according the MA3 fixture standards. Mostly accurs when fixturetypes have "User" defined as Source (instead of "GrandMA2" or "GrandMA3") in the "fixture types" overview. More info: [Build Fixture Types](https://help2.malighting.com/Page/grandMA3/ft_build/en)
