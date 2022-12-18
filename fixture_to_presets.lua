@@ -952,6 +952,7 @@ local function fixture_to_presets(displayHandle)
 	signalTable.chkPreviewClicked = function(caller)
 		if chkPreview.State == 1 then
 			chkPreview.State = 0;
+			Cmd('ClearAll');
 		else
 			chkPreview.State = 1;
 		end
