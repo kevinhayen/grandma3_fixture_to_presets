@@ -98,6 +98,23 @@ When pressing a value, the plugin will:
 
 ![image](https://user-images.githubusercontent.com/95590073/199282427-de652418-cef3-4435-a12c-5a6c138c470d.png)
 
+### Preview a preset
+
+This is an added feature, currently not visible in screenshots above, or in the example movie.
+
+A "Preview" checkbox is added, this is visible on the lift side above, when in the screen of possible values you can store.
+
+Please don't be confused, this "Preview" checkbox is not the same as the MA3 "Preview" keyword, they both are different.
+
+When the checkbox next to "Preview" is selected, values will not be stored, but only put in programmer. In this case, due to some reasons, you can first check the output of your fixtures in real life. To store the value, just uncheck the "Preview" checkbox and click the value button again.
+
+For this example, I enabled the "Preview" checkbox, first clicked "Open", then "Red". The System Monitor shows:
+- ClearAll to clear all programmer info
+- Corresponding fixtures are selected
+- Attribute values are set
+
+![image](https://user-images.githubusercontent.com/95590073/208323516-b20610a2-182d-45f8-8d8c-a40d8bac4b74.png)
+
 ### Colors
 
 Fixtures having at least CMY or RGB values, will not have all combinations of colors stored in their fixture file.
