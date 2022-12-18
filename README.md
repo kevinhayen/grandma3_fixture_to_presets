@@ -102,7 +102,7 @@ When pressing a value, the plugin will:
 
 This is an added feature, currently not visible in screenshots above, or in the example movie.
 
-A "Preview" checkbox is added, this is visible on the lift side above, when in the screen of possible values you can store.
+A "Preview" checkbox is added, this is visible on the left side above, when you are in the screen for storing possible values.
 
 Please don't be confused, this "Preview" checkbox is not the same as the MA3 "Preview" keyword, they both are different.
 
