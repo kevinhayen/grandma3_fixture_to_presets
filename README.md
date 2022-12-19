@@ -11,7 +11,7 @@ works on **v1.8.8.2**
 ## New implemented features
 18-Dec-2022
 
-A "preview" checkbox, which if enabled will only put values in programmer, without storing them.
+A "preview" checkbox is added, which if enabled will only put values in programmer, without storing them.
 
 ## Features to be implemented
 
