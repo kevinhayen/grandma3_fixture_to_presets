@@ -1006,12 +1006,15 @@ function fixture_to_presets_execute()
 		local channels = ShowData().Livepatch.FixtureTypes[GetVar(UserVars(),"ftpClickedFixture")].DMXModes[GetVar(UserVars(),"ftpClickedFixtureMode")].DMXChannels:Children();
 		
 		for channel in ipairs(channels) do
-				
+			
 			local channelGeometry = channels[channel].Geometry.name;
-			local channelGeometryModel = channels[channel].Geometry.Model.Name;
 
-			findSubfix = "::" .. channelGeometry .. "-" .. channelGeometryModel .. "::"
-			foundSubfix = string.find(GetVar(UserVars(),"ftpClickedSubFixtures"), findSubfix, 1, true)
+			foundSubfix = nil;
+			if channels[channel].Geometry.Model ~= nil then
+				local channelGeometryModel = channels[channel].Geometry.Model.Name;
+				findSubfix = "::" .. channelGeometry .. "-" .. channelGeometryModel .. "::"
+				foundSubfix = string.find(GetVar(UserVars(),"ftpClickedSubFixtures"), findSubfix, 1, true)
+			end
 
 			if (GetVar(UserVars(),"ftpClickedIsSubFixture") == '0' and foundSubfix == nil)
 			or (GetVar(UserVars(),"ftpClickedIsSubFixture") == '1' and foundSubfix ~= nil) 
