@@ -787,14 +787,17 @@ local function fixture_to_presets(displayHandle)
 			SetVar(UserVars(),"ftpFoundAttributeInFixtureError", '1');
 			local channels = ShowData().Livepatch.FixtureTypes[GetVar(UserVars(),"ftpClickedFixture")].DMXModes[GetVar(UserVars(),"ftpClickedFixtureMode")].DMXChannels:Children();
 			for channel in ipairs(channels) do
-				
 				local channelName = channels[channel].name;
 				local channelGeometry = channels[channel].Geometry.name;
-				local channelGeometryModel = channels[channel].Geometry.Model.Name;
-				local channelsInfo = channels[channel]:Children();
 
-				findSubfix = "::" .. channelGeometry .. "-" .. channelGeometryModel .. "::"
-				foundSubfix = string.find(GetVar(UserVars(),"ftpClickedSubFixtures"), findSubfix, 1, true)
+				foundSubfix = nil;
+				if channels[channel].Geometry.Model ~= nil then
+					local channelGeometryModel = channels[channel].Geometry.Model.Name;
+					findSubfix = "::" .. channelGeometry .. "-" .. channelGeometryModel .. "::"
+					foundSubfix = string.find(GetVar(UserVars(),"ftpClickedSubFixtures"), findSubfix, 1, true)
+				end
+				
+				local channelsInfo = channels[channel]:Children();
 
 				if (GetVar(UserVars(),"ftpClickedIsSubFixture") == '0' and foundSubfix == nil)
 				or (GetVar(UserVars(),"ftpClickedIsSubFixture") == '1' and foundSubfix ~= nil) 
@@ -1159,41 +1162,57 @@ end
 
 function fixture_to_presets_select_fixtures(fixtureName, modeName)
 
+	Printf('-- select fixtures --')
+	Printf(fixtureName);
+	Printf(modeName);
+
 	Cmd('ClearAll');
 
 	local stages = ShowData().Livepatch.Stages:Children();
 	for stage in ipairs(stages) do
 		fixtures = stages[stage].Fixtures:Children();
 		for fixture in ipairs(fixtures) do
-			if fixtureName == fixtures[fixture].fixturetype.name and modeName == fixtures[fixture].modedirect.name then
-				
-				-- check if fixture is the main fixture, or a subfixture
-				if GetVar(UserVars(),"ftpClickedIsSubFixture") ~= "1" then
-					Cmd('Fixture ' .. fixtures[fixture].no)
-				else
+			linkedfixtures = fixtures[fixture]:Children();
+			
+			if #linkedfixtures == 0 then
+				if fixtureName == fixtures[fixture].fixturetype.name and modeName == fixtures[fixture].modedirect.name then
+					fixture_to_presets_select_fixtures_check(fixtureName, modeName, fixtures[fixture].no);
+				end
+			else
+				for linkedfixture in ipairs(linkedfixtures) do
+					if fixtureName == linkedfixtures[linkedfixture].fixturetype.name and modeName == linkedfixtures[linkedfixture].modedirect.name then
+						fixture_to_presets_select_fixtures_check(fixtureName, modeName, linkedfixtures[linkedfixture].no);
+					end
+				end
+			end
 
-					local geometryName = ShowData().Livepatch.FixtureTypes[fixtureName].DMXModes[modeName].geometry;
-					local g11 = ShowData().Livepatch.FixtureTypes[fixtureName].Geometries[geometryName]:Children();
-					for g1 in ipairs(g11) do
-						--Printf(g11[g1].name)
-						g22 = g11[g1]:Children()
-						for g2 in ipairs(g22) do
-							--Printf(g22[g2].name)
-							g33 = g22[g2]:Children()
-							for g3 in ipairs(g33) do
-								--Printf(g33[g3].name)
-								references = g33[g3]:Children()
-								for reference in ipairs(references) do
-									if references[reference].geometry ~= nil then
-										Cmd('Fixture ' .. fixtures[fixture].no .. '.' .. references[reference].no)
-									end
-								end
-							end
+		end
+	end
+end
+
+function fixture_to_presets_select_fixtures_check(fixtureName, modeName, fixtureNo)
+
+	-- check if fixture is the main fixture, or a subfixture
+	if GetVar(UserVars(),"ftpClickedIsSubFixture") ~= "1" then
+		Cmd('Fixture ' .. fixtureNo)
+	else
+		local geometryName = ShowData().Livepatch.FixtureTypes[fixtureName].DMXModes[modeName].geometry;
+		local g11 = ShowData().Livepatch.FixtureTypes[fixtureName].Geometries[geometryName]:Children();
+		for g1 in ipairs(g11) do
+			--Printf(g11[g1].name)
+			g22 = g11[g1]:Children()
+			for g2 in ipairs(g22) do
+				--Printf(g22[g2].name)
+				g33 = g22[g2]:Children()
+				for g3 in ipairs(g33) do
+					--Printf(g33[g3].name)
+					references = g33[g3]:Children()
+					for reference in ipairs(references) do
+						if references[reference].geometry ~= nil then
+							Cmd('Fixture ' .. fixtureNo .. '.' .. references[reference].no)
 						end
 					end
-
 				end
-
 			end
 		end
 	end
