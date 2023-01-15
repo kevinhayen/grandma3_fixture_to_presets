@@ -9,6 +9,10 @@ All object manipulations are done using commands, visible in the "Command Line H
 works on **v1.8.8.2**
 
 ## New implemented features
+15-Jan-2023
+
+storing presets was only possible for directly patched fixtures, now we added the possibility to store values from fixtures patched within a "grouping fixture". This is currently possible when the grouping fixture is not patched within another grouping fixtures.
+
 18-Dec-2022
 
 A "preview" checkbox is added, which if enabled will only put values in programmer, without storing them.
