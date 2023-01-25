@@ -228,11 +228,11 @@ local function fixture_to_presets(displayHandle)
 	-- begin of data creation --
 	----------------------------
 
-	Printf('==============')
-	Printf('Print uservars')
-	Printf('==============')
-	Cmd("GetUserVar ftp*")
-	Printf('==============')
+	-- Printf('==============')
+	-- Printf('Print uservars')
+	-- Printf('==============')
+	-- Cmd("GetUserVar ftp*")
+	-- Printf('==============')
 
 	local tblOptions = {};
 	local foundAttribute = 0
