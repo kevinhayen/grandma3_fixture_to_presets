@@ -5,20 +5,22 @@ local myHandle = select(4, ...)
 local chkMerge = nil;
 
 -- The sorting order is defined by variable ftpColorRGBNames, while the RGB value comes from ftpColorRGB
-local ftpColorRGBNames		= {'Open', 'Red', 'Orange', 'Amber', 'Yellow', 'Lime', 'Green', 'Cyan', 'Sky Blue', 'Blue', 'Purple', 'UV', 'Magenta', 'Pink', 'Cold White', 'Warm White'}
+local ftpColorRGBNames		= {'White', 'CTO', 'CTB', 'Red', 'Orange', 'Amber', 'Yellow', 'Fern Green', 'Green', 'Sea Green', 'Cyan', 'Lavender', 'Blue', 'Violet', 'Magenta', 'Pink', 'Cold White', 'Warm White'}
 local ftpColorRGB 			= {};
-ftpColorRGB['Open'] 		= '255,255,255'
+ftpColorRGB['White'] 		= '255,255,255'
+ftpColorRGB['CTO'] 			= '255,227,175'
+ftpColorRGB['CTB'] 			= '176,227,255'
 ftpColorRGB['Red']  		= '255,000,000'
 ftpColorRGB['Orange']		= '255,128,000'
 ftpColorRGB['Amber']		= '255,191,000'
 ftpColorRGB['Yellow']		= '255,255,000'
-ftpColorRGB['Lime']			= '128,255,000'
+ftpColorRGB['Fern Green']	= '128,255,000'
 ftpColorRGB['Green']		= '000,255,000'
+ftpColorRGB['Sea Green']	= '000,255,127'
 ftpColorRGB['Cyan']			= '000,255,255'
-ftpColorRGB['Sky Blue']		= '033,092,140'
+ftpColorRGB['Lavender']		= '000,128,255'
 ftpColorRGB['Blue']			= '000,000,255'
-ftpColorRGB['Purple']		= '128,000,255'
-ftpColorRGB['UV']			= '044,000,255'
+ftpColorRGB['Violet']		= '128,000,255'
 ftpColorRGB['Magenta']		= '255,000,255'
 ftpColorRGB['Pink']			= '255,000,128'
 ftpColorRGB['Cold White']	= '230,255,255'
@@ -226,11 +228,11 @@ local function fixture_to_presets(displayHandle)
 	-- begin of data creation --
 	----------------------------
 
-	--Printf('==============')
-	--Printf('Print uservars')
-	--Printf('==============')
-	--Cmd("GetUserVar ftp*")
-	--Printf('==============')
+	Printf('==============')
+	Printf('Print uservars')
+	Printf('==============')
+	Cmd("GetUserVar ftp*")
+	Printf('==============')
 
 	local tblOptions = {};
 	local foundAttribute = 0
@@ -985,12 +987,12 @@ function fixture_to_presets_execute()
 
 	fixture_to_presets_store_info()
 
-	if tonumber(GetVar(UserVars(), 'ftpStorePreset')) > 0 then
+	fixture_to_presets_select_fixtures(GetVar(UserVars(), 'ftpClickedFixture'), GetVar(UserVars(), 'ftpClickedFixtureMode'));
 
-		fixture_to_presets_select_fixtures(GetVar(UserVars(), 'ftpClickedFixture'), GetVar(UserVars(), 'ftpClickedFixtureMode'));
-
-		Cmd('Attribute "' .. GetVar(UserVars(),"ftpClickedAttribute") .. '" At Absolute Decimal24 ' .. tostring(tonumber(GetVar(UserVars(),"ftpClickedValue")) * 65793) );
-		if GetVar(UserVars(),"ftpClickedPreview") ~= 1 then
+	Cmd('Attribute "' .. GetVar(UserVars(),"ftpClickedAttribute") .. '" At Absolute Decimal24 ' .. tostring(tonumber(GetVar(UserVars(),"ftpClickedValue")) * 65793) );
+	
+	if GetVar(UserVars(),"ftpClickedPreview") ~= 1 then
+		if tonumber(GetVar(UserVars(), 'ftpStorePreset')) > 0 then
 			if GetVar(UserVars(), 'ftpStoreMode') == 'merge' then
 				Cmd('Store Preset "' .. string.sub(GetVar(UserVars(),"ftpPresetType"), 2) .. '".' .. GetVar(UserVars(), 'ftpStorePreset') .. ' /m');
 			else
@@ -998,51 +1000,52 @@ function fixture_to_presets_execute()
 				Cmd('Label Preset "' .. string.sub(GetVar(UserVars(),"ftpPresetType"), 2) .. '".' .. GetVar(UserVars(), 'ftpStorePreset') .. ' "' .. GetVar(UserVars(),"ftpChannelValueName") .. '"')
 			end
 			Cmd('ClearAll');
-		end
 
-		fixture_to_presets_find_first_empty_preset(">")
 
-		-- check if an encoder wheel is linked to find images, create appearance, and link them in presets
-		local channels = ShowData().Livepatch.FixtureTypes[GetVar(UserVars(),"ftpClickedFixture")].DMXModes[GetVar(UserVars(),"ftpClickedFixtureMode")].DMXChannels:Children();
-		
-		for channel in ipairs(channels) do
+			fixture_to_presets_find_first_empty_preset(">")
+
+			-- check if an encoder wheel is linked to find images, create appearance, and link them in presets
+			local channels = ShowData().Livepatch.FixtureTypes[GetVar(UserVars(),"ftpClickedFixture")].DMXModes[GetVar(UserVars(),"ftpClickedFixtureMode")].DMXChannels:Children();
 			
-			local channelGeometry = channels[channel].Geometry.name;
+			for channel in ipairs(channels) do
+				
+				local channelGeometry = channels[channel].Geometry.name;
 
-			foundSubfix = nil;
-			if channels[channel].Geometry.Model ~= nil then
-				local channelGeometryModel = channels[channel].Geometry.Model.Name;
-				findSubfix = "::" .. channelGeometry .. "-" .. channelGeometryModel .. "::"
-				foundSubfix = string.find(GetVar(UserVars(),"ftpClickedSubFixtures"), findSubfix, 1, true)
-			end
+				foundSubfix = nil;
+				if channels[channel].Geometry.Model ~= nil then
+					local channelGeometryModel = channels[channel].Geometry.Model.Name;
+					findSubfix = "::" .. channelGeometry .. "-" .. channelGeometryModel .. "::"
+					foundSubfix = string.find(GetVar(UserVars(),"ftpClickedSubFixtures"), findSubfix, 1, true)
+				end
 
-			if (GetVar(UserVars(),"ftpClickedIsSubFixture") == '0' and foundSubfix == nil)
-			or (GetVar(UserVars(),"ftpClickedIsSubFixture") == '1' and foundSubfix ~= nil) 
-			then
-				local channelsInfo = channels[channel]:Children();
-				for channelInfo in ipairs(channelsInfo) do
-					if channelsInfo[channelInfo].name == GetVar(UserVars(),"ftpClickedAttribute") or (GetVar(UserVars(),"ftpClickedAttribute") == 'Color' and (channelsInfo[channelInfo].name == 'ColorRGB_R' or channelsInfo[channelInfo].name == 'ColorRGB_C')) then
-						local channelGroups = channelsInfo[channelInfo]:Children();
-						if string.sub(channelsInfo[channelInfo].name, 1, 8) ~= 'ColorRGB' then
-							for channelGroup in ipairs(channelGroups) do
-								if channelGroups[channelGroup].wheel ~= nil and GetVar(UserVars(),"presetType") == 'Gobo' then
-									wheelName = channelGroups[channelGroup].wheel.name;
-									wheelIndex = channelValues[channelValue].wheelslotindex;
-									appearance = fixtures[fixture].Wheels[wheelName][wheelIndex].appearance;
-									-- create appearance
-									--Cmd('Delete Appearance "' .. appearance.name .. '" /NoConfirm');
-									local newAppearance = ShowData().Appearances:Aquire();
-									newAppearance.Name = appearance.name;
-									newAppearance.Appearance = ShowData().Mediapools.Gobos[appearance.name];
-									-- assign appearance to preset
-									Cmd('Set Preset "' .. string.sub(GetVar(UserVars(),"ftpPresetType"), 2) .. '".' .. GetVar(UserVars(), 'ftpStorePreset') .. ' Property "Appearance" "' .. appearance.name .. '"');
+				if (GetVar(UserVars(),"ftpClickedIsSubFixture") == '0' and foundSubfix == nil)
+				or (GetVar(UserVars(),"ftpClickedIsSubFixture") == '1' and foundSubfix ~= nil) 
+				then
+					local channelsInfo = channels[channel]:Children();
+					for channelInfo in ipairs(channelsInfo) do
+						if channelsInfo[channelInfo].name == GetVar(UserVars(),"ftpClickedAttribute") or (GetVar(UserVars(),"ftpClickedAttribute") == 'Color' and (channelsInfo[channelInfo].name == 'ColorRGB_R' or channelsInfo[channelInfo].name == 'ColorRGB_C')) then
+							local channelGroups = channelsInfo[channelInfo]:Children();
+							if string.sub(channelsInfo[channelInfo].name, 1, 8) ~= 'ColorRGB' then
+								for channelGroup in ipairs(channelGroups) do
+									if channelGroups[channelGroup].wheel ~= nil and GetVar(UserVars(),"presetType") == 'Gobo' then
+										wheelName = channelGroups[channelGroup].wheel.name;
+										wheelIndex = channelValues[channelValue].wheelslotindex;
+										appearance = fixtures[fixture].Wheels[wheelName][wheelIndex].appearance;
+										-- create appearance
+										--Cmd('Delete Appearance "' .. appearance.name .. '" /NoConfirm');
+										local newAppearance = ShowData().Appearances:Aquire();
+										newAppearance.Name = appearance.name;
+										newAppearance.Appearance = ShowData().Mediapools.Gobos[appearance.name];
+										-- assign appearance to preset
+										Cmd('Set Preset "' .. string.sub(GetVar(UserVars(),"ftpPresetType"), 2) .. '".' .. GetVar(UserVars(), 'ftpStorePreset') .. ' Property "Appearance" "' .. appearance.name .. '"');
+									end
 								end
 							end
 						end
 					end
 				end
-			end
-		end		
+			end	
+		end	
 	end
 end
 
