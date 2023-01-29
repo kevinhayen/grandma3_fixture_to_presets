@@ -228,11 +228,11 @@ local function fixture_to_presets(displayHandle)
 	-- begin of data creation --
 	----------------------------
 
-	--Printf('==============')
-	--Printf('Print uservars')
-	--Printf('==============')
-	--Cmd("GetUserVar ftp*")
-	--Printf('==============')
+	-- Printf('==============')
+	-- Printf('Print uservars')
+	-- Printf('==============')
+	-- Cmd("GetUserVar ftp*")
+	-- Printf('==============')
 
 	local tblOptions = {};
 	local foundAttribute = 0
@@ -813,13 +813,13 @@ local function fixture_to_presets(displayHandle)
 			end
 		end
 
-		Cmd("Call Plugin " .. ftpPluginName);
+		Cmd("Call Plugin '" .. ftpPluginName .. "'");
 	end
 
 	ftpSignalTable.SelectionAttributeClick = function(caller)
 		attribute = string.sub(caller.Text, 0, string.find(caller.Text, '\n\n') - 1) 
 		SetVar(UserVars(),"ftpClickedAttribute", attribute);
-		Cmd("Call Plugin " .. ftpPluginName);
+		Cmd("Call Plugin '" .. ftpPluginName .. "'");
 	end
 
 	ftpSignalTable.SelectionValueClick = function(caller)
@@ -945,13 +945,13 @@ local function fixture_to_presets(displayHandle)
 
 	ftpSignalTable.ChangeFixtureClick = function(caller)
 		DelVar(UserVars(),"ftpClickedFixture");
-		Cmd("Call Plugin " .. ftpPluginName);
+		Cmd("Call Plugin '" .. ftpPluginName .. "'");
 	end
 
 	ftpSignalTable.ChangeAttributeClick = function(caller)
 		DelVar(UserVars(),"ftpFoundAttributeInFixtureError");
 		DelVar(UserVars(),"ftpClickedAttribute");
-		Cmd("Call Plugin " .. ftpPluginName);
+		Cmd("Call Plugin '" .. ftpPluginName .. "'");
 	end
 
 	ftpSignalTable.chkPreviewClicked = function(caller)
