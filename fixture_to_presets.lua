@@ -1,8 +1,8 @@
-local ftpPluginName = select(1, ...)
-local ftpComponentName = select(2, ...)
-local ftpSignalTable = select(3, ...)
-local ftpMyHandle = select(4, ...)
-local chkMerge = nil;
+local pluginName = select(1, ...)
+local componentName = select(2, ...)
+local signalTable = select(3, ...)
+local myHandle = select(4, ...)
+local ftpChkMerge = nil;
 
 -- The sorting order is defined by variable ftpColorRGBNames, while the RGB value comes from ftpColorRGB
 local ftpColorRGBNames		= {'White', 'CTO', 'CTB', 'Red', 'Orange', 'Amber', 'Yellow', 'Fern Green', 'Green', 'Sea Green', 'Cyan', 'Lavender', 'Blue', 'Violet', 'Magenta', 'Pink', 'Cold White', 'Warm White'}
@@ -29,6 +29,10 @@ ftpColorRGB['Warm White']	= '255,255,230'
 local function fixture_to_presets(displayHandle)
 
 	SetVar(UserVars(),"ftpForceMerge", false);
+	PluginName = myHandle:Parent().Name
+
+	Printf('plugin:')
+	Printf(pluginName)
 
 	------------------------------
 	-- begin of screen creation --
@@ -144,7 +148,7 @@ local function fixture_to_presets(displayHandle)
 		bottom = 2    
 	}
 	tblSelected[1].HasHover = "Yes";
-	tblSelected[1].PluginComponent = ftpMyHandle
+	tblSelected[1].PluginComponent = myHandle
 	tblSelected[1].Clicked = "ChangeFixtureClick";
 	tblSelected[1].Text = "Please patch some fixtures, or just click this button to reset this plugin";
 
@@ -289,7 +293,7 @@ local function fixture_to_presets(displayHandle)
 			bottom = 2    
 		}
 		tblOptions[1].HasHover = "Yes";
-		tblOptions[1].PluginComponent = ftpMyHandle
+		tblOptions[1].PluginComponent = myHandle
 		tblOptions[1].Clicked = "ChangeAttributeClick";
 
 		tblOptions[1] = optionsGrid:Append("Button")
@@ -307,7 +311,7 @@ local function fixture_to_presets(displayHandle)
 			bottom = 2    
 		}
 		tblOptions[1].HasHover = "Yes";
-		tblOptions[1].PluginComponent = ftpMyHandle
+		tblOptions[1].PluginComponent = myHandle
 		tblOptions[1].Clicked = "ChangeFixtureClick";
 
 	else
@@ -385,7 +389,7 @@ local function fixture_to_presets(displayHandle)
 					bottom = 2    
 				}
 				tblOptions[x].HasHover = "Yes";
-				tblOptions[x].PluginComponent = ftpMyHandle
+				tblOptions[x].PluginComponent = myHandle
 				tblOptions[x].Clicked = "SelectionFixtureClick";
 			end
 		end
@@ -471,11 +475,11 @@ local function fixture_to_presets(displayHandle)
 				end
 				y = y + 1;
 
-				type = string.sub(showAttribute, 2, string.find(showAttribute, '\n\n'))
-				attr = string.sub(showAttribute, string.find(showAttribute, '\n\n') + 2)
+				local ftpType = string.sub(showAttribute, 2, string.find(showAttribute, '\n\n'))
+				local ftpAttr = string.sub(showAttribute, string.find(showAttribute, '\n\n') + 2)
 
 				tblOptions[x] = optionsGrid:Append("Button")
-				tblOptions[x].Text = attr .. '\n\n' .. type
+				tblOptions[x].Text = ftpAttr .. '\n\n' .. ftpType
 				tblOptions[x].Anchors = {
 					left = y,
 					right = y,
@@ -489,7 +493,7 @@ local function fixture_to_presets(displayHandle)
 					bottom = 2    
 				}
 				tblOptions[x].HasHover = "Yes";
-				tblOptions[x].PluginComponent = ftpMyHandle
+				tblOptions[x].PluginComponent = myHandle
 				tblOptions[x].Clicked = "SelectionAttributeClick";
 
 			end
@@ -505,7 +509,7 @@ local function fixture_to_presets(displayHandle)
 
 			tblSelected[2].HasHover = "Yes";
 			tblSelected[2].Text = GetVar(UserVars(),"ftpClickedAttribute") .. "\n\n(Click to change Attribute)"
-			tblSelected[2].PluginComponent = ftpMyHandle
+			tblSelected[2].PluginComponent = myHandle
 			tblSelected[2].Clicked = "ChangeAttributeClick";
 
 			subGrid.Columns = 20;
@@ -533,29 +537,29 @@ local function fixture_to_presets(displayHandle)
 				chkPreview.Text = "Preview"
 				chkPreview.TextalignmentH = "Left";
 				chkPreview.State = GetVar(UserVars(),"ftpClickedPreview");
-				chkPreview.PluginComponent = ftpMyHandle
+				chkPreview.PluginComponent = myHandle
 				chkPreview.Clicked = "chkPreviewClicked"
 				chkPreview.HasHover = "Yes";
 
-			chkMerge = subGrid:Append("CheckBox")
-			chkMerge.Anchors = {
+			ftpChkMerge = subGrid:Append("CheckBox")
+			ftpChkMerge.Anchors = {
 				left = 18,
 				right = 19,
 				top = 0,
 				bottom = 0
 			}    
-			chkMerge.Margin = {
+			ftpChkMerge.Margin = {
 					left = 8,
 					right = 8,
 					top = 15,
 					bottom = 15    
 				}
-			chkMerge.Text = "Merge"
-			chkMerge.TextalignmentH = "Left";
-			chkMerge.State = GetVar(UserVars(),"ftpClickedMerge");
-			chkMerge.PluginComponent = ftpMyHandle
-			chkMerge.Clicked = "chkMergeClicked"
-			chkMerge.HasHover = "Yes";
+			ftpChkMerge.Text = "Merge"
+			ftpChkMerge.TextalignmentH = "Left";
+			ftpChkMerge.State = GetVar(UserVars(),"ftpClickedMerge");
+			ftpChkMerge.PluginComponent = myHandle
+			ftpChkMerge.Clicked = "ftpChkMergeClicked"
+			ftpChkMerge.HasHover = "Yes";
 
 			btnLeft = subGrid:Append("Button")
 			btnLeft.Anchors = {
@@ -571,7 +575,7 @@ local function fixture_to_presets(displayHandle)
 				bottom = 15    
 			}
 			btnLeft.HasHover = "Yes";
-			btnLeft.PluginComponent = ftpMyHandle
+			btnLeft.PluginComponent = myHandle
 			btnLeft.Clicked = "btnLeftClick";
 			btnLeft.Text = "<";
 
@@ -589,7 +593,7 @@ local function fixture_to_presets(displayHandle)
 				bottom = 15    
 			}
 			btnDMX.HasHover = "Yes";
-			btnDMX.PluginComponent = ftpMyHandle
+			btnDMX.PluginComponent = myHandle
 			btnDMX.Clicked = "btnDMXClick";
 			btnDMX.Text = "100";
 
@@ -607,7 +611,7 @@ local function fixture_to_presets(displayHandle)
 				bottom = 15    
 			}
 			btnRight.HasHover = "Yes";
-			btnRight.PluginComponent = ftpMyHandle
+			btnRight.PluginComponent = myHandle
 			btnRight.Clicked = "btnRightClick";
 			btnRight.Text = ">";
 
@@ -679,7 +683,7 @@ local function fixture_to_presets(displayHandle)
 												bottom = 2    
 											}
 											tblOptions[x].HasHover = "Yes";
-											tblOptions[x].PluginComponent = ftpMyHandle
+											tblOptions[x].PluginComponent = myHandle
 											tblOptions[x].Clicked = "SelectionValueClick";
 
 										end
@@ -711,7 +715,7 @@ local function fixture_to_presets(displayHandle)
 									bottom = 2    
 								}
 								tblOptions[x].HasHover = "Yes";
-								tblOptions[x].PluginComponent = ftpMyHandle
+								tblOptions[x].PluginComponent = myHandle
 								tblOptions[x].Clicked = "SelectionColorRGBAllClick";
 
 								for color in pairs(ftpColorRGBNames) do
@@ -737,7 +741,7 @@ local function fixture_to_presets(displayHandle)
 										bottom = 2    
 									}
 									tblOptions[x].HasHover = "Yes";
-									tblOptions[x].PluginComponent = ftpMyHandle
+									tblOptions[x].PluginComponent = myHandle
 									tblOptions[x].Clicked = "SelectionColorRGBClick";
 
 								end
@@ -752,7 +756,7 @@ local function fixture_to_presets(displayHandle)
 	optionsGrid.Rows = #tblOptions;
 	dlgFrame[1][3].Size = #tblOptions * 100;
 
-	ftpSignalTable.SelectionFixtureClick = function(caller)
+	signalTable.SelectionFixtureClick = function(caller)
 		if string.find(caller.Text, '\n\n') == nil then
 			clickedFixture = string.sub(caller.Text, 0, string.find(caller.Text, '::') - 2);
 			clickedFixtureMode = string.sub(caller.Text, string.find(caller.Text, '::') + 3);
@@ -813,16 +817,16 @@ local function fixture_to_presets(displayHandle)
 			end
 		end
 
-		Cmd("Call Plugin '" .. ftpPluginName .. "'");
+		Cmd("Call Plugin '" .. pluginName .. "'");
 	end
 
-	ftpSignalTable.SelectionAttributeClick = function(caller)
+	signalTable.SelectionAttributeClick = function(caller)
 		attribute = string.sub(caller.Text, 0, string.find(caller.Text, '\n\n') - 1) 
 		SetVar(UserVars(),"ftpClickedAttribute", attribute);
-		Cmd("Call Plugin '" .. ftpPluginName .. "'");
+		Cmd("Call Plugin '" .. pluginName .. "'");
 	end
 
-	ftpSignalTable.SelectionValueClick = function(caller)
+	signalTable.SelectionValueClick = function(caller)
 		clickedValueName = string.sub(caller.Text, 0, string.find(caller.Text, '\n\n') - 1);
 		clickedValue = string.sub(caller.Text, string.find(caller.Text, '\n\n') + 2);
 		SetVar(UserVars(),"ftpClickedValue", clickedValue);
@@ -830,7 +834,7 @@ local function fixture_to_presets(displayHandle)
 		fixture_to_presets_execute();
 	end
 
-	ftpSignalTable.SelectionColorRGBAllClick = function(caller)
+	signalTable.SelectionColorRGBAllClick = function(caller)
 		SetVar(UserVars(), 'ftpForceMerge', true);
 		for color in pairs(ftpColorRGBNames) do
 			fixture_to_presets_storeColorRGB(ftpColorRGBNames[color]);
@@ -838,17 +842,17 @@ local function fixture_to_presets(displayHandle)
 		SetVar(UserVars(), 'ftpForceMerge', false);
 	end
 
-	ftpSignalTable.SelectionColorRGBClick = function(caller)
+	signalTable.SelectionColorRGBClick = function(caller)
 		fixture_to_presets_storeColorRGB(caller.Text);
 	end
 
-	ftpSignalTable.btnLeftClick = function(caller)
+	signalTable.btnLeftClick = function(caller)
 		presetNo = tonumber(GetVar(UserVars(), "ftpPresetNumber" .. string.sub(GetVar(UserVars(),"ftpPresetType"), 2))) - 1
 		SetVar(UserVars(), "ftpPresetSetNo", presetNo)
 		fixture_to_presets_find_first_empty_preset("<")
 	end
 
-	ftpSignalTable.btnDMXClick = function(caller)
+	signalTable.btnDMXClick = function(caller)
 		preset = TextInput(': " Preset Number to store');
 		if preset == nil then
 			preset = '1';
@@ -859,7 +863,7 @@ local function fixture_to_presets(displayHandle)
 		end
 	end
 
-	ftpSignalTable.btnRightClick = function(caller)
+	signalTable.btnRightClick = function(caller)
 		presetNo = tonumber(GetVar(UserVars(), "ftpPresetNumber" .. string.sub(GetVar(UserVars(),"ftpPresetType"), 2))) + 1
 		SetVar(UserVars(), "ftpPresetSetNo", presetNo)
 		fixture_to_presets_find_first_empty_preset(">")
@@ -875,7 +879,7 @@ local function fixture_to_presets(displayHandle)
 		SetVar(UserVars(), "ftpPresetType", '4Color');
 		SetVar(UserVars(), "ftpIsColorAssigned", false);
 
-		dmxValues = fixture_to_presets_split(ftpColorRGB[label], ',')
+		local dmxValues = fixture_to_presets_split(ftpColorRGB[label], ',')
 
 		fixture_to_presets_store_info()
 
@@ -943,18 +947,18 @@ local function fixture_to_presets(displayHandle)
 		end
 	end
 
-	ftpSignalTable.ChangeFixtureClick = function(caller)
+	signalTable.ChangeFixtureClick = function(caller)
 		DelVar(UserVars(),"ftpClickedFixture");
-		Cmd("Call Plugin '" .. ftpPluginName .. "'");
+		Cmd("Call Plugin '" .. pluginName .. "'");
 	end
 
-	ftpSignalTable.ChangeAttributeClick = function(caller)
+	signalTable.ChangeAttributeClick = function(caller)
 		DelVar(UserVars(),"ftpFoundAttributeInFixtureError");
 		DelVar(UserVars(),"ftpClickedAttribute");
-		Cmd("Call Plugin '" .. ftpPluginName .. "'");
+		Cmd("Call Plugin '" .. pluginName .. "'");
 	end
 
-	ftpSignalTable.chkPreviewClicked = function(caller)
+	signalTable.chkPreviewClicked = function(caller)
 		if chkPreview.State == 1 then
 			chkPreview.State = 0;
 			Cmd('ClearAll');
@@ -964,13 +968,13 @@ local function fixture_to_presets(displayHandle)
 		SetVar(UserVars(),"ftpClickedPreview", chkPreview.State);
 	end
 
-	ftpSignalTable.chkMergeClicked = function(caller)
-		if chkMerge.State == 1 then
-			chkMerge.State = 0;
+	signalTable.ftpChkMergeClicked = function(caller)
+		if ftpChkMerge.State == 1 then
+			ftpChkMerge.State = 0;
 		else
-			chkMerge.State = 1;
+			ftpChkMerge.State = 1;
 		end
-		SetVar(UserVars(),"ftpClickedMerge", chkMerge.State);
+		SetVar(UserVars(),"ftpClickedMerge", ftpChkMerge.State);
 	end
 
 end
