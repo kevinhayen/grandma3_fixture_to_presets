@@ -34,7 +34,7 @@ Just checking how motivated you can make us, to post more of our plugins.
 ## Installation
 
 1. In the plugin pool, create a new plugin
-2. close the plugin if the editor opens
+2. close the plugin editor if the editor opens
 3. label the plugin in the plugin pool as "fixture_to_presets", or another name as desired
 4. now edit this plugin, the plugin editor opens
 5. Click "Insert new ComponentLua"
