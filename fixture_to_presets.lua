@@ -29,9 +29,8 @@ ftpColorRGB['Warm White']	= '255,255,230'
 local function fixture_to_presets(displayHandle)
 
 	SetVar(UserVars(),"ftpForceMerge", false);
-	PluginName = myHandle:Parent().Name
 
-	Printf('plugin:')
+	Printf('plugin')
 	Printf(pluginName)
 
 	------------------------------
