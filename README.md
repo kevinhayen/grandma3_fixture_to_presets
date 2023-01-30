@@ -33,15 +33,16 @@ Just checking how motivated you can make us, to post more of our plugins.
 
 ## Installation
 
-1. Copy the lua code from https://github.com/kevinhayen/fixture_to_presets/blob/main/fixture_to_presets.lua
-2. In the plugin pool, create a new plugin
-3. label this plugin as "fixture_to_presets", or another name without a space
-4. Open this plugin by editing, the plugin editor screen pops up
+1. In the plugin pool, create a new plugin
+2. close the plugin if the editor opens
+3. label the plugin in the plugin pool as "fixture_to_presets", or another name as desired
+4. now edit this plugin, the plugin editor opens
 5. Click "Insert new ComponentLua"
 6. Click "Edit", which opens the LUA editor
-7. Paste your copied LUA code in this screen, and press "Save" on the top right
-8. execute "ReloadPlugins" in commandline
-9. When executing the plugin, and the commandline tells you "not implemented: Call Plugin", then redo a part of this installation. Do step 4, then press "Delete", and continue with step 5. It's some workaround that solved most installation issues.
+7. Copy the lua code from https://github.com/kevinhayen/fixture_to_presets/blob/main/fixture_to_presets.lua
+8. Paste your copied LUA code in this screen, and press "Save" on the top right
+9. execute "ReloadPlugins" in commandline
+10. now the plugin works by clicking the plugin
 
 ## How does it work?
 
