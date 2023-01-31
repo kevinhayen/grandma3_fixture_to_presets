@@ -8,6 +8,19 @@ All object manipulations are done using commands, visible in the "Command Line H
 
 works on **v1.8.8.2**
 
+## Installation
+
+1. In the plugin pool, create a new plugin
+2. close the plugin editor if the editor opens
+3. label the plugin in the plugin pool as "fixture_to_presets", or another name as desired
+4. now edit this plugin, the plugin editor opens
+5. Click "Insert new ComponentLua"
+6. Click "Edit", which opens the LUA editor
+7. Copy the lua code from https://github.com/kevinhayen/fixture_to_presets/blob/main/fixture_to_presets.lua
+8. Paste your copied LUA code in this screen, and press "Save" on the top right
+9. execute "ReloadPlugins" in commandline
+10. now the plugin works by clicking the plugin
+
 ## New implemented features
 15-Jan-2023
 
@@ -30,19 +43,6 @@ It is possible to not see a patched fixture, its attributes, or its values. This
 Just checking how motivated you can make us, to post more of our plugins.
 
 [![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/donate/?hosted_button_id=DYYUK9H8NLV28)
-
-## Installation
-
-1. In the plugin pool, create a new plugin
-2. close the plugin editor if the editor opens
-3. label the plugin in the plugin pool as "fixture_to_presets", or another name as desired
-4. now edit this plugin, the plugin editor opens
-5. Click "Insert new ComponentLua"
-6. Click "Edit", which opens the LUA editor
-7. Copy the lua code from https://github.com/kevinhayen/fixture_to_presets/blob/main/fixture_to_presets.lua
-8. Paste your copied LUA code in this screen, and press "Save" on the top right
-9. execute "ReloadPlugins" in commandline
-10. now the plugin works by clicking the plugin
 
 ## How does it work?
 
