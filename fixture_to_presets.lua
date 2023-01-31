@@ -1189,8 +1189,10 @@ function fixture_to_presets_select_fixtures(fixtureName, modeName)
 				end
 			else
 				for linkedfixture in ipairs(linkedfixtures) do
-					if fixtureName == linkedfixtures[linkedfixture].fixturetype.name and modeName == linkedfixtures[linkedfixture].modedirect.name then
-						fixture_to_presets_select_fixtures_check(fixtureName, modeName, linkedfixtures[linkedfixture].no);
+					if linkedfixtures[linkedfixture].fixturetype ~= nil and linkedfixtures[linkedfixture].modedirect ~= nil then
+						if fixtureName == linkedfixtures[linkedfixture].fixturetype.name and modeName == linkedfixtures[linkedfixture].modedirect.name then
+							fixture_to_presets_select_fixtures_check(fixtureName, modeName, linkedfixtures[linkedfixture].no);
+						end
 					end
 				end
 			end
