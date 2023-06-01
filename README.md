@@ -6,7 +6,7 @@ Grandma3 lua plugin to store presets, based on info provided by fixture files
 
 All object manipulations are done using commands, visible in the "Command Line History" screen.
 
-works on **v1.8.8.2**
+works on **v1.9.3.1**
 
 ## Installation
 
