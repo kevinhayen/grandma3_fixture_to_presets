@@ -15,6 +15,11 @@ works on **v1.9.3.3**
 - In GrandMA3, edit a plugin, select `Import`, select your USB stick, and press `Import`
 
 ## New implemented features
+
+18-Jun-2023
+
+Changing the workflow in the plugin for merging values. Previously, the "Merge" checkbox overruled the 3 buttons on the left of it. So when "Merge" was checked and you pressed a value to store, a popup asked for the preset location to merge values into. Now the "Merge" checkbox is linked to the 3 buttons on the left of it for navigating. When unchecking "Merge" while the navigator is indicating a non-empty preset, the plugin will automatically select the next empty preset and remind you using a popup message.
+
 15-Jan-2023
 
 storing presets was only possible for directly patched fixtures, now we added the possibility to store values from fixtures patched within a "grouping fixture". This is currently possible when the grouping fixture is not patched within another grouping fixtures.
