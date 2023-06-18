@@ -6,20 +6,13 @@ Grandma3 lua plugin to store presets, based on info provided by fixture files
 
 All object manipulations are done using commands, visible in the "Command Line History" screen.
 
-works on **v1.9.3.1**
+works on **v1.9.3.3**
 
-## Installation
+## How to install
 
-1. In the plugin pool, create a new plugin
-2. close the plugin editor if the editor opens
-3. label the plugin in the plugin pool as "fixture_to_presets", or another name as desired
-4. now edit this plugin, the plugin editor opens
-5. Click "Insert new ComponentLua"
-6. Click "Edit", which opens the LUA editor
-7. Copy the lua code from https://github.com/kevinhayen/fixture_to_presets/blob/main/fixture_to_presets.lua
-8. Paste your copied LUA code in this screen, and press "Save" on the top right
-9. execute "ReloadPlugins" in commandline
-10. now the plugin works by clicking the plugin
+- Download `fixture_to_presets.xml`
+- save this on your USB stick in `grandMA3`/`gma3_library`/`datapools`/`plugins`
+- In GrandMA3, edit a plugin, select `Import`, select your USB stick, and press `Import`
 
 ## New implemented features
 15-Jan-2023
