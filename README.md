@@ -12,7 +12,7 @@ works on **v1.9.3.3**
 
 - Download `fixture_to_presets.xml`
 - save this on your USB stick in `grandMA3`/`gma3_library`/`datapools`/`plugins`
-- In GrandMA3, edit a plugin, select `Import`, select your USB stick, and press `Import`
+- In GrandMA3, edit an empty plugin pool, select `Import`, select your USB stick, and press `Import`
 
 ## New implemented features
 
