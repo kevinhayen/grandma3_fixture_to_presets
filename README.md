@@ -16,6 +16,10 @@ works on **v1.9.3.3**
 
 ## New implemented features
 
+20-Jun-2023
+
+Fixturetypes are shown when it is at leased patched once, having a FID set. This will reduce the list of shown fixturetypes to only those who are active in the current show.
+
 18-Jun-2023
 
 Changing the workflow in the plugin for merging values. Previously, the "Merge" checkbox overruled the 3 buttons on the left of it. So when "Merge" was checked and you pressed a value to store, a popup asked for the preset location to merge values into. Now the "Merge" checkbox is linked to the 3 buttons on the left of it for navigating. When unchecking "Merge" while the navigator is indicating a non-empty preset, the plugin will automatically select the next empty preset and remind you using a popup message.
