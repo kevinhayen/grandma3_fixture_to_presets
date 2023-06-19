@@ -18,7 +18,7 @@ works on **v1.9.3.3**
 
 20-Jun-2023
 
-Fixturetypes are shown when it is at leased patched once, having a FID set. This will reduce the list of shown fixturetypes to only those who are active in the current show.
+Fixturetypes are only shown when it is at leased patched once having a FID. This will reduce the list of shown fixturetypes to only those who are active in the current show.
 
 18-Jun-2023
 
