@@ -76,7 +76,7 @@ The 3 buttons are used to navigate over empty presets.
 
 By pressing the middle button, you can enter a number manually. The first empty found preset number, started from the manually entered number, will be selected.
 
-The **Merge** checkbox will show an inputbox to manually enter a preset number after pressing a value you want to be stored. This overrules the buttons on the left of it
+The **Merge** checkbox will merge values into the selected presets. When unchecking **Merge**, the plugin will verify if the selected preset number is empty, if not it will be updated to the next empty preset number.
 
 ---
 
