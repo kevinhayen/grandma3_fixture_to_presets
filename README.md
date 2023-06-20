@@ -34,7 +34,6 @@ A "preview" checkbox is added, which if enabled will only put values in programm
 
 ## Features to be implemented
 
-- showing only fixtures having a fixtureID, to show only the fixtures used in the current show
 - When merging having appearances involved, alow the user to override this appearance, or keep the already used appearance
 - A scrollbar, for when their is more to show than what your screen can handle
 - Auto-matching between fixture info, and already existing presets
