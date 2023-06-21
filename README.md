@@ -34,8 +34,7 @@ A "preview" checkbox is added, which if enabled will only put values in programm
 
 ## Features to be implemented
 
-- When merging having appearances involved, alow the user to override this appearance, or keep the already used appearance
-- A scrollbar, for when their is more to show than what your screen can handle
+- export of own created presets, which will be selectable using this plugin in another showfile
 - Auto-matching between fixture info, and already existing presets
 
 ## Little important info:
