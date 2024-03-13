@@ -6,7 +6,7 @@ Grandma3 lua plugin to store presets, based on info provided by fixture files
 
 All object manipulations are done using commands, visible in the "Command Line History" screen.
 
-works on **v1.9.3.3**
+works on **v1.9.7.0**
 
 ## How to install
 
@@ -15,6 +15,10 @@ works on **v1.9.3.3**
 - In GrandMA3, edit an empty plugin pool, select `Import`, select your USB stick, and press `Import`
 
 ## New implemented features
+
+13-Mar-2024
+
+3D objects from imported MVR files could cause errors in this plugin. These 3D objects are now ignored.
 
 20-Jun-2023
 
