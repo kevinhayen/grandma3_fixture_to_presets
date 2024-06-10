@@ -1,3 +1,7 @@
+> [!IMPORTANT]
+> Since software version 2.0, the software can handle the creation of presets by itself, so this plugin will not be updated again.
+> https://help.malighting.com/grandMA3/2.0/HTML/sc_create_presets.html
+
 # fixture_to_presets
 
 https://user-images.githubusercontent.com/95590073/199271857-11ac8645-fafa-498f-9ad6-1acc2f8ecdf5.mp4
